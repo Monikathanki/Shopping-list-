@@ -7,9 +7,9 @@ function ShoppingList(props) {
             <input
                 type="text"
                 placeholder="Banana"
-                name = "itemToAdd"
+                name = "item"
             />
-            <button type= "button">Add Item</button>
+            <button type= "submit">Add Item</button>
         </form>
     )
 }

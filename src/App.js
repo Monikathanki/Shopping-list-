@@ -17,7 +17,7 @@ class App extends React.Component {
     console.log({name: event })
     event.preventDefault();
     let newItem = {
-      name:  event.target.value
+      name:  event.target.item.value
     }
     let currentItems = this.state.items;
     currentItems.push(newItem);
@@ -28,7 +28,20 @@ class App extends React.Component {
     
   }
   deleteItem = (event) => {
-    console.log(event.target.value)
+    let itemToRemove = event.target.value;
+    let currentItems = this.state.items;
+    let indexToRemove = currentItems.findIndex((item) => {
+      if (item === itemToRemove) {
+        return item;
+      }
+
+    })
+    console.log(indexToRemove);
+    currentItems.splice(indexToRemove, 1);
+    console.log(currentItems)
+    this.setState({
+      items: currentItems
+    });
     
 
   }
@@ -45,7 +58,9 @@ class App extends React.Component {
             return (
               <h2 key={i}>
                 {item.name}
-                <button onClick={this.deleteItem} value={item.name}>Delete</button>
+                <button
+                  onClick={this.deleteItem} value={item}>
+                  Delete</button>
 
               </h2>
             );
